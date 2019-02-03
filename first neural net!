@@ -1,0 +1,47 @@
+#first neural net!
+import numpy as np
+
+#will take in any x input and sigmoid function gives a value between 1 and 0
+def sigmoid(x):
+	return 1/ (1 + np.exp(-x))
+
+def sigmoid_derivative(x):
+	return x *(1-x)
+
+training_inputs = np.array([[0,0,1],
+							[1,1,1],
+							[1,0,1],
+							[0,1,1]])
+#the .T makes it a 4x1 rather than a row which we have it as right now
+training_outputs = np.arrays([[0,1,1,0]]).T
+
+np.random.seed(1)
+
+#takes 3 inputs gives us 1 output 
+synaptic _weights = 2 * np.random.random((3,1))-1 
+#weights are random numbers 
+print('Random starting synaptic weights: ')
+print(synaptic_weights)
+
+for iteration in range(100000):
+
+	input_layer = training_inputs
+	
+	#np.dot allows for us to multiply the input layer with synaptic weights
+	outputs = sigmoid(np.dot(input_layer, synaptic_weights))
+
+	error = training_outputs - outputs
+
+	adjustments = errors * sigmoid_derivative(outputs)
+
+	synaptic_weights += np.dot(input_layer.T, adjustments)
+
+print('Synpatic weights after training')
+print(synpatic_weights)
+
+print('Outputs after training: ')
+print(outputs)
+
+#how training works -> take inputs put them through the neural net, take the neural net's output compare to the output, calculate error through subtraction and comparing actual outcome to outcome from neural net, depending on the error, weights will be changed to get an answer closer to the actual outcome, repeat process multiple times
+
+
